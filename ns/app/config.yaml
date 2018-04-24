@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config
+  namespace: demo-app
+data:
+  my-site: "server {
+  listen       80;\n
+  server_name  localhost;\n
+  location / {\n
+    root   /home;\n
+    index  index.html index.htm;\n
+  }\n
+}"
+  index: "<p>it's working</p>"

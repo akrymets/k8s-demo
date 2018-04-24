@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: teamcity-server
+  namespace: teamcity
+spec:
+  selector:
+    app: tc-server
+  ports:
+  - protocol: TCP
+    port: 8111
+    targetPort: 8111
+  externalIPs:
+  - 192.168.99.100

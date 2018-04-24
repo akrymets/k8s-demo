@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: teamcity-agent
+  namespace: teamcity
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+  selector:
+    app: tc-agent

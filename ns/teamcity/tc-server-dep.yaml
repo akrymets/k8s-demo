@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcity-server
+  namespace: teamcity
+  labels:
+    app: tc-server
+    env: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tc-server
+  template:
+    metadata:
+      labels:
+        app: tc-server
+    spec:
+      containers:
+      - name: teamcity-server
+        image: jetbrains/teamcity-server
+        ports:
+        - containerPort: 8111
+        volumeMounts:
+        - name: tc-data
+          mountPath: /data/teamcity_server/datadir
+        - name: tc-logs
+          mountPath: /opt/teamcity/logs
+      volumes:
+      - name: tc-data
+        hostPath:
+          path: /host/k8s-demo/tc/data
+          type: Directory
+      - name: tc-logs
+        hostPath:
+          path: /host/k8s-demo/tc/logs
+          type: Directory
